@@ -1,0 +1,22 @@
+{
+  "name": "leaflet-canvas-date-marker",
+  "version": "0.0.1",
+  "description": "canvas 绘制节点及在节点上显示传入的时间",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newz-max/leaflet-canvas-date-marker.git"
+  },
+  "keywords": [
+    "leaflet、marker、date"
+  ],
+  "author": "https://github.com/newz-max/leaflet-canvas-date-marker.git",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newz-max/leaflet-canvas-date-marker/issues"
+  },
+  "homepage": "https://github.com/newz-max/leaflet-canvas-date-marker#readme"
+}
