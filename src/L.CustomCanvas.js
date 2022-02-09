@@ -29,6 +29,11 @@ L.Canvas.CustomCanvas = L.Layer.extend({
     this._update()
   },
 
+  onRemove(){
+    const { _map:map , _ctx:ctx , _canvas:canvas} = this
+    canvas.remove()
+  },
+
   // 初始化 canvas 实例
   _initCanvas() {
     const canvas = L.DomUtil.create('canvas', 'leaflet-ship')
