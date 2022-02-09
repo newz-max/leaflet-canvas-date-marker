@@ -12,8 +12,6 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
       _map: map
     } = this
 
-    console.log(data, 'options')
-
     if (!DateValKeyName) {
       throw new Error(`DateValKeyName 属性为必填项，数据集合内表示时间的键名`)
     }
@@ -42,8 +40,6 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
 
   drawDatePoint(res) {
     const { _ctx: ctx } = this
-
-    console.log(res, 'res')
 
     res.forEach(item => {
       let { latlng: { x, y }, date } = item
@@ -90,7 +86,6 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
       ctx.stroke()
 
       // 日期节点文字
-      console.log(date, 'date')
       ctx.fillStyle = 'black'
       ctx.font = '24px Arial'
       ctx.textAlign = 'center'
