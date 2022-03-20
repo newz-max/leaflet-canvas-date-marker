@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/newz-max/leaflet-canvas-date-marker#readme",
   "dependencies": {
-    "leaflet-canvas-custom-class": "^0.0.0",
+    "leaflet-canvas-custom-class": "^0.0.0"
   }
 }
