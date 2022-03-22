@@ -71,7 +71,7 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
     let area = null;
     let prevArea = null;
 
-    res.forEach((item) => {
+    res.forEach((item, index) => {
       let {
         latlng: { x, y },
         date,
@@ -90,6 +90,8 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
           y,
         },
       };
+
+      let flag = false;
 
       if (this.options.impactCheck && prevArea !== null) {
         const isIntersection = function (rectA, rectB) {
@@ -116,22 +118,22 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
           return prev;
         }, {});
 
-        const flag = isIntersection(pointsA, pointsB);
-        if (flag) {
-          return;
-        }
-      }
+        flag = isIntersection(pointsA, pointsB);
 
-      prevArea = {
-        leftTop: {
-          x,
-          y: y - 132,
-        },
-        rightBottom: {
-          x: x + 350,
-          y,
-        },
-      };
+        console.log(prevArea, "prevArea");
+      }
+      if (index === 0 || !flag) {
+        prevArea = {
+          leftTop: {
+            x,
+            y: y - 132,
+          },
+          rightBottom: {
+            x: x + 350,
+            y,
+          },
+        };
+      }
 
       // 船位节点绘制
       // 圆形节点白色边框
@@ -147,6 +149,8 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
       ctx.fillStyle = "#86cbe9";
       ctx.closePath();
       ctx.fill();
+
+      if (flag) return;
 
       // 日期节点绘制
       const dateX = x + 90;
