@@ -91,7 +91,7 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
         },
       };
 
-      if (this.impactCheck && prevArea !== null) {
+      if (this.options.impactCheck && prevArea !== null) {
         const isIntersection = function (rectA, rectB) {
           let lftp = [
               Math.max(rectA.x1, rectB.x1),

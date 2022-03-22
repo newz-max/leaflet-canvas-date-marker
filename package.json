@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/newz-max/leaflet-canvas-date-marker#readme",
   "dependencies": {
-    "@turf/turf": "^6.5.0",
     "axios": "^0.26.1",
     "leaflet": "^1.7.1",
     "leaflet-canvas-custom-class": "^0.0.0",
