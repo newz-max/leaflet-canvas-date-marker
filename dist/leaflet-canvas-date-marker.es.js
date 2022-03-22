@@ -84,6 +84,8 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
   }
   drawDatePoint(res) {
     const { _ctx: ctx } = this;
+    let area = null;
+    let prevArea = null;
     res.forEach((item) => {
       let {
         latlng: { x, y },
@@ -91,6 +93,52 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
       } = item;
       x = x * 2;
       y = y * 2;
+      area = {
+        leftTop: {
+          x,
+          y: y - 132
+        },
+        rightBottom: {
+          x: x + 350,
+          y
+        }
+      };
+      if (this.impactCheck && prevArea !== null) {
+        const isIntersection = function(rectA, rectB) {
+          let lftp = [
+            Math.max(rectA.x1, rectB.x1),
+            Math.max(rectA.y1, rectB.y1)
+          ], rgbt = [Math.min(rectA.x2, rectB.x2), Math.min(rectA.y2, rectB.y2)];
+          if (lftp[0] <= rgbt[0] && lftp[1] <= rgbt[1]) {
+            return true;
+          }
+          return false;
+        };
+        const pointsA = Object.values(area).reduce((prev, item2, index) => {
+          prev[`x${index + 1}`] = item2.x;
+          prev[`y${index + 1}`] = item2.y;
+          return prev;
+        }, {});
+        const pointsB = Object.values(prevArea).reduce((prev, item2, index) => {
+          prev[`x${index + 1}`] = item2.x;
+          prev[`y${index + 1}`] = item2.y;
+          return prev;
+        }, {});
+        const flag = isIntersection(pointsA, pointsB);
+        if (flag) {
+          return;
+        }
+      }
+      prevArea = {
+        leftTop: {
+          x,
+          y: y - 132
+        },
+        rightBottom: {
+          x: x + 350,
+          y
+        }
+      };
       ctx.beginPath();
       ctx.arc(x, y, 10, 0, 2 * Math.PI);
       ctx.fillStyle = "white";
@@ -127,7 +175,7 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
     });
   }
 }
-L.canvas.CanvasDatePoint = (options) => {
+L.canvas.CanvasDatePoint = (options = { impactCheck: false }) => {
   const result = new CanvasDatePoint(options);
   return result;
 };
