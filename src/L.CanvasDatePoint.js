@@ -119,8 +119,6 @@ class CanvasDatePoint extends L.Canvas.CustomCanvas {
         }, {});
 
         flag = isIntersection(pointsA, pointsB);
-
-        console.log(prevArea, "prevArea");
       }
       if (index === 0 || !flag) {
         prevArea = {
