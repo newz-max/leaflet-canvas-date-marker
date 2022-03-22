@@ -5,7 +5,6 @@
  * @param {String} latKeyName 数据内纬度值的字段名 必填 如果传入 false 将认为传入经纬点为合并的数据集
  * @param {String} lngKeyName 数据内经度值的字段名 必填 如果 latKeyName 传入 false 此字段需传入 经纬点数据字段
  */
-import * as turf from "@turf/turf";
 class CanvasDatePoint extends L.Canvas.CustomCanvas {
   drawLayer() {
     const {
