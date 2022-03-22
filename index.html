@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #map {
+            box-sizing: border-box;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+
+</html>
+<!-- Vue3 -->
+<!-- <script src="https://unpkg.com/vue@next"></script> -->
+<script src="../main.js" type="module"></script>
+
+<script type="module">
+    import axios from 'axios'
+    import { map } from './leaflet-init'
+
+    console.log(map, 'map');
+
+    const { data: dates } = await axios.get('./JSON/dates.json')
+
+    console.log(map.latLngToContainerPoint(dates[0].latlng));
+
+    const d = L.canvas.CanvasDatePoint({
+        data: dates,
+        DateValKeyName: 'date',
+        latKeyName: false,
+        lngKeyName: 'latlng'
+    })
+
+    d.addTo(map)
+
+    // setTimeout( () => {
+    //     d.remove()
+    // }, 2000)
+
+</script>

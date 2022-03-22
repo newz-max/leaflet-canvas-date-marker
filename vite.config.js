@@ -9,4 +9,10 @@ export default defineConfig({
             // fileName : (format) => `leaflet-canvas-date-marker.${format}.js`
         }
     },
+
+    resolve : {
+        alias : {
+            "@" : resolve(__dirname , 'src')
+        }
+    }
 })
